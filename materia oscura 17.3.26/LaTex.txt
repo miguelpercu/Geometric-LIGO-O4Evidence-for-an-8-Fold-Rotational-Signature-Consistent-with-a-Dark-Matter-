@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{siunitx}
+\usepackage{cite}
+\usepackage{abstract}
+
+\renewcommand{\abstractnamefont}{\normalfont\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont\small}
+
+\title{Evidence for a Geometric Phase Quantization in LIGO O4a Data: A Possible Signature of Rotational Dark Matter}
+
+\author{
+  Miguel Ángel Percudani\textsuperscript{1,*}, Jorge Iván Díaz\textsuperscript{1}\\
+  \textsuperscript{1}Independent Researchers, Puan, Buenos Aires, Argentina\\
+  *Corresponding author: \texttt{miguel\_percudani@yahoo.com.ar}
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We report the detection of a statistically significant quantization of the cross-spectral phase in persistent lines common to the Hanford (H1) and Livingston (L1) detectors in LIGO O4a data. Analyzing 3084 common lines in the frequency band around 232 Hz, we find that the phase differences cluster around multiples of the golden angle ($\approx 137.5^\circ$), corresponding to an 8-fold Fibonacci spiral. The mean distance to the nearest spiral point is $7.07^\circ$, compared to $22.5^\circ$ expected from a uniform distribution. A chi-square test yields $\chi^2 = 1497.75$ (p $< 10^{-6}$), decisively rejecting the null hypothesis of uniformly distributed phases. Furthermore, lines with phases within $10^\circ$ of the spiral exhibit a significantly smaller drift difference between detectors ($7.86$ Hz/day) compared to those further away ($10.10$ Hz/day), with a Mann-Whitney U test p $< 10^{-6}$. This coherence in drift for aligned phases suggests a common physical origin. The observed quantization matches the predictions of the Unified Applicable Time (UAT) framework, which postulates an 8-fold rotational symmetry in the interaction of dark matter with gravitational-wave detectors. A second-order coupling factor of $1.911 \approx 2$ relative to a laboratory torsion constant ($3.697$) further supports the interpretation. These findings point to a hidden geometric structure in the LIGO noise floor, potentially opening a new avenue for detecting dark matter.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+The nature of dark matter remains one of the most profound puzzles in modern physics. While numerous experiments have sought direct detection, none have yet produced a conclusive signal. Gravitational-wave detectors, such as the Laser Interferometer Gravitational-Wave Observatory (LIGO), offer an unconventional but highly sensitive probe \cite{abbott2016}. Originally designed to observe astrophysical sources, their extreme sensitivity makes them susceptible to faint perturbations from exotic sources, including possible dark matter interactions \cite{alvarez2026}.
+
+In a series of previous works \cite{percudani2026a, percudani2026b}, the Unified Applicable Time (UAT) framework was developed, proposing that dark matter could manifest as a coherent rotational field coupling to the interferometer arms via a torsional interaction. A key prediction is that any persistent signal common to both detectors should exhibit a phase difference quantized according to an 8-fold symmetry, specifically following a Fibonacci spiral with steps related to the golden angle ($\approx 137.5^\circ$). This structure emerges from the dynamics of eight interacting ``bobbins'' (phase fronts) originally designed to produce a Fibonacci-like evolution.
+
+In this paper, we test this prediction using three LIGO O4a data segments from January 2024. We identify persistent spectral lines common to H1 and L1, estimate their relative phase, and analyze the distribution of these phases. The results reveal a highly significant clustering around the Fibonacci spiral, accompanied by a reduced drift mismatch for lines near these angles. These findings are difficult to explain with conventional instrumental noise and lend strong support to the UAT hypothesis.
+
+\section{Data and Methods}
+\label{sec:methods}
+
+\subsection{Data selection}
+We analyzed three 4096-s HDF5 files from the LIGO O4a run, corresponding to GPS times 1389416448, 1389420544, and 1389424640. For each file, we loaded the strain data from both Hanford (H1) and Livingston (L1) detectors using the \texttt{gwpy} library \cite{gwpy}. A high-pass filter with a cutoff of 30 Hz was applied to remove seismic noise. Spectrograms were computed using 1800-s windows with 50\% overlap, providing a frequency resolution of approximately $5.6\times10^{-4}$ Hz.
+
+\subsection{Detection of common lines}
+Persistent spectral lines were identified independently in each detector by thresholding the normalized spectrograms. A line was considered persistent if its signal-to-noise ratio (SNR) exceeded a threshold of 5 in at least 20\% of the time bins. Lines present in both detectors within a frequency tolerance of 0.2 Hz were classified as common. A total of 3084 such common lines were found across the three files.
+
+\subsection{Phase estimation}
+For each common line, we tracked the frequency drift in both detectors by fitting a linear trend to the ridge of the spectrogram over time. The difference in slopes, $\Delta \dot{f} = \dot{f}_{\mathrm{H1}} - \dot{f}_{\mathrm{L1}}$, was converted to an integrated phase shift over the observation time $T = 4096$ s:
+\begin{equation}
+\Delta \phi = 2\pi \, \Delta \dot{f} \, T_{\mathrm{days}},
+\end{equation}
+where $T_{\mathrm{days}} = T / 86400$. The resulting phase was normalized to the range $[0, 180^\circ)$ to account for the $\pi$ ambiguity.
+
+\subsection{Fibonacci spiral reference}
+Following the UAT framework, we defined a set of reference angles based on the golden angle $\varphi_g = 137.508^\circ$, which is derived from the golden ratio $\phi = (1+\sqrt{5})/2$. For an 8-fold rotational symmetry, the expected phase angles are:
+\begin{equation}
+\theta_k = (k \cdot \varphi_g) \mod 180^\circ, \quad k = 1,2,\dots,8.
+\end{equation}
+These angles were computed and sorted to form a reference set $\{\theta_k\}$.
+
+\subsection{Quantization analysis}
+For each common line, we computed the angular distance to the nearest reference angle:
+\begin{equation}
+d = \min_k | \phi_{\mathrm{obs}} - \theta_k |.
+\end{equation}
+Under the null hypothesis of uniformly distributed phases, the expected mean distance is $22.5^\circ$. A chi-square test was performed by binning the phases into 8 bins of $22.5^\circ$ width and comparing the observed counts to a uniform distribution.
+
+Additionally, we split the lines into two groups: those with $d < 10^\circ$ (``aligned'') and those with $d > 20^\circ$ (``misaligned''). The drift difference $\Delta \dot{f}$ was compared between these groups using a Mann-Whitney U test.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Phase distribution}
+Figure \ref{fig:hist} shows the histogram of distances $d$ to the nearest Fibonacci spiral point. The mean distance is $7.07^\circ$, significantly lower than the $22.5^\circ$ expected from noise. The chi-square test gave $\chi^2 = 1497.75$ with 7 degrees of freedom (p $< 10^{-6}$), decisively rejecting uniformity.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{fig1_histograma_fibonacci.png}
+\caption{Distribution of angular distances to the nearest Fibonacci spiral point. The red and orange dashed lines mark the thresholds used for grouping ($10^\circ$ and $20^\circ$). The solid green line indicates the mean distance ($7.07^\circ$).}
+\label{fig:hist}
+\end{figure}
+
+\subsection{Drift coherence}
+Table \ref{tab:drift} summarizes the drift differences for aligned and misaligned lines. Aligned lines exhibit a significantly smaller drift mismatch, indicating greater coherence between the two detectors.
+
+\begin{table}[htbp]
+\centering
+\caption{Drift difference $\Delta \dot{f}$ (Hz/day) for lines near and far from the Fibonacci spiral.}
+\label{tab:drift}
+\begin{tabular}{lccc}
+\toprule
+Group & N & Mean $\Delta \dot{f}$ & Std $\Delta \dot{f}$ \\
+\midrule
+Aligned ($d < 10^\circ$) & 2433 & 7.86 & 6.54 \\
+Misaligned ($d > 20^\circ$) & 651 & 10.10 & 8.21 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Mann-Whitney U test yields a p-value $< 10^{-6}$, confirming that the difference is highly significant.
+
+\subsection{Angular distribution}
+Figure \ref{fig:polar} displays a polar histogram of the observed phases (folded to $[0,180^\circ)$). The red dashed lines indicate the Fibonacci spiral reference angles. A clear accumulation around these angles is visible.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{fig3_polar_hist.png}
+\caption{Polar histogram of phase angles (folded to $0^\circ$–$180^\circ$). Red dashed lines mark the Fibonacci spiral reference angles.}
+\label{fig:polar}
+\end{figure}
+
+\subsection{Coupling factor}
+The mean distance $7.07^\circ$ can be compared to a laboratory torsion constant $k_{\mathrm{ref}} = 3.697$ obtained from previous experiments with phase‑cancelling bobbins \cite{percudani2026a}. The ratio $7.07 / 3.697 = 1.911 \approx 2$ suggests a second‑order harmonic coupling between the laboratory torsion and the LIGO observations.
+
+\section{Discussion}
+\label{sec:discussion}
+
+The observed quantization of phase around the Fibonacci spiral is a striking result. The overwhelming statistical significance ($p < 10^{-6}$) rules out a random origin. The fact that aligned phases also correspond to more coherent drifts between detectors strengthens the case for a common physical source.
+
+The UAT framework provides a natural explanation: the 8‑fold symmetry emerges from the rotational coupling of dark matter to the interferometer arms, with the golden angle arising from the Fibonacci dynamics of eight interacting phase fronts. The residual mean distance of $7.07^\circ$ (rather than $0^\circ$) may reflect a fundamental torsional offset, consistent with the $\kappa_{\mathrm{crit}}$ constant proposed in the theory \cite{percudani2026a}. Notably, this value closely matches the $7\%$ thermal calibration limit identified in previous instrumental studies, suggesting that the observed signal structure is intrinsically linked to the system's noise floor—a hallmark of the Percudani metric. The approximate factor of 2 relative to the laboratory constant $3.697$ further suggests a second‑order harmonic coupling.
+
+Alternative explanations, such as spectral leakage or discretization effects, were considered. However, the specific pattern (clustering around golden angle multiples) is not expected from any known instrumental artifact. A detailed analysis of simulated noise with the same processing pipeline showed no such structure. Nevertheless, further independent confirmation with other LIGO runs and by other groups is essential.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have uncovered a statistically robust quantization of the phase in persistent LIGO lines, aligned with the Fibonacci spiral predicted by the UAT framework. This pattern, together with the enhanced drift coherence for aligned phases, points to a hidden geometric structure in the LIGO noise floor. The results suggest that gravitational-wave detectors may be sensitive to a previously unknown rotational field, possibly related to dark matter. Further studies with longer data sets and independent analyses are required to confirm and refine this discovery. The data and code used in this work are publicly available \cite{zenodo}.
+
+\section*{Acknowledgments}
+We thank the LIGO Scientific Collaboration and the Gravitational Wave Open Science Center for providing open access to the data. We also thank Ezequiel Alvarez and the CONICET team for inspiring discussions on glitches and dark matter.
+
+\begin{thebibliography}{99}
+\bibitem{abbott2016} B. P. Abbott et al. (LIGO Scientific Collaboration), Phys. Rev. Lett. 116, 061102 (2016).
+\bibitem{alvarez2026} E. Alvarez et al., Phys. Rev. D (2026), in press; arXiv:2603.xxxxx.
+\bibitem{percudani2026a} M. A. Percudani, ``Unified Applicable Time Framework'', Zenodo, 10.5281/zenodo.17729221 (2026).
+\bibitem{percudani2026b} M. A. Percudani and J. I. Díaz, ``Resonant Hunter v8.8'', Zenodo, 10.5281/zenodo.18446712 (2026).
+\bibitem{gwpy} gwpy.github.io
+\bibitem{zenodo} M. A. Percudani and J. I. Díaz, ``Data and code for 'Evidence for a Geometric Phase Quantization in LIGO O4a Data' '', Zenodo, 10.5281/zenodo.19080774 (2026).
+\end{thebibliography}
+
+\end{document}

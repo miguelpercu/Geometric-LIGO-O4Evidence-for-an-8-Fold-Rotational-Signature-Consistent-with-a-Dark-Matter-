@@ -1,0 +1,424 @@
+ANÁLISIS DE DATASET DE GLITCHES ESTILO LIGO (KOI-FISH)
+
+ ============================================================
+DATOS CARGADOS
+============================================================
+     event_id      gps_time detector  duration_s  peak_freq_hz  bandwidth_hz  \
+0  H1_KF_0001  1.187009e+09       H1        0.12           140            80   
+1  H1_KF_0002  1.187010e+09       H1        0.09           120            70   
+2  H1_KF_0003  1.187012e+09       H1        0.15           180            95   
+3  H1_KF_0004  1.187016e+09       H1        0.08            95            60   
+4  H1_KF_0005  1.187019e+09       H1        0.14           210           110   
+
+    snr    strain_amp classification  
+0  12.7  2.100000e-21        KoiFish  
+1  10.4  1.600000e-21        KoiFish  
+2  14.9  2.800000e-21        KoiFish  
+3   9.8  1.300000e-21        KoiFish  
+4  15.2  3.100000e-21        KoiFish  
+
+Total de eventos: 20
+
+============================================================
+ESTADÍSTICAS DESCRIPTIVAS
+============================================================
+       peak_freq_hz        snr    strain_amp  duration_s
+count     20.000000  20.000000  2.000000e+01   20.000000
+mean     155.500000  12.950000  2.285000e-21    0.117000
+std       43.525552   2.574265  7.555235e-22    0.027549
+min       85.000000   8.700000  1.100000e-21    0.070000
+25%      127.500000  11.075000  1.750000e-21    0.097500
+50%      157.500000  13.000000  2.250000e-21    0.115000
+75%      183.750000  14.975000  2.850000e-21    0.140000
+max      230.000000  17.000000  3.600000e-21    0.160000
+
+============================================================
+CLUSTERS TEMPORALES (DBSCAN)
+============================================================
+Número de clusters temporales: 1
+Eventos por cluster:
+time_cluster
+0    20
+Name: count, dtype: int64
+
+============================================================
+CORRELACIONES
+============================================================
+Correlación Frecuencia vs SNR: 0.985
+Correlación Frecuencia vs Strain: 0.993
+
+============================================================
+DETECCIÓN DE OUTLIERS
+============================================================
+Número de outliers detectados: 2
+
+Eventos outlier:
+      event_id  peak_freq_hz   snr    strain_amp
+8   H1_KF_0009            85   8.7  1.100000e-21
+19  H1_KF_0020           230  17.0  3.600000e-21
+
+============================================================
+MODELO DE PASAJE DE MASA (SIMULACIÓN)
+============================================================
+Strain típico esperado: 4.94e-24
+Strain observado: min=1.10e-21, max=3.60e-21, media=2.28e-21
+Número de glitches compatibles (dentro de 1 orden de magnitud): 0
+
+============================================================
+FRECUENCIAS UAT
+============================================================
+
+🎯 187.37 Hz (±5 Hz): 0 glitches
+
+🎯 232.04 Hz (±5 Hz): 1 glitches
+      event_id  peak_freq_hz   snr    strain_amp
+19  H1_KF_0020           230  17.0  3.600000e-21
+
+✅ Datos guardados en 'glitches_analizados.csv'
+============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+# SIMULACIÓN DE CANCELACIÓN DE FASES - MÉTRICA PERCUDANI (UPC)
+# Configuración: 8 frentes de fase enfrentados (45°)
+
+
+--- Iniciando colisión de fase a 232.04 Hz ---
+
+==================================================
+RESULTADOS DEL EXPERIMENTO (Target: 232.04 Hz)
+==================================================
+Suma Vectorial Matemática (Deep): 0.000000000000052
+Valor Residual Observado (Miguel): 3.697
+--------------------------------------------------
+CONCLUSIÓN UPC:
+La cancelación es perfecta en el papel, pero la torsión
+del espacio-tiempo impide el cero. El 3.697 es la huella
+de la Materia Oscura operando en el sistema cerrado.
+==================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANÁLISIS DIFERENCIAL DE LÍNEAS PERSISTENTES EN ARCHIVOS LOCALES DE LIGO
+Versión para 3 pares de archivos (GPS 1389416448, 1389420544, 1389424640)
+
+ ======================================================================
+ ANÁLISIS DIFERENCIAL DE LÍNEAS PERSISTENTES UAT - 3 GPS
+======================================================================
+
+--- Procesando GPS 1389416448 ---
+   Datos válidos: 67108864 muestras (4096.00 s)
+   Filtro pasa-alta aplicado (>30 Hz)
+
+   --- Banda 180-195 Hz (target 187.37 Hz) ---
+      Líneas H1: 121
+      Líneas L1: 139
+      Líneas comunes H1/L1: 437
+
+   --- Banda 220-240 Hz (target 232.04 Hz) ---
+      Líneas H1: 211
+      Líneas L1: 328
+      Líneas comunes H1/L1: 590
+         231.082 Hz: H1=-18.960000±10.638641, L1=6.720000±8.898892, Δ=25.680000 ✗ NO
+         231.108 Hz: H1=-18.960000±16.766252, L1=6.720000±8.898892, Δ=25.680000 ✗ NO
+         231.148 Hz: H1=-18.960000±16.766252, L1=-9.466667±18.244269, Δ=9.493333 ✗ NO
+         231.148 Hz: H1=-18.960000±16.766252, L1=-9.466667±18.244269, Δ=9.493333 ✗ NO
+         231.174 Hz: H1=-18.960000±16.766252, L1=-9.466667±18.244269, Δ=9.493333 ✗ NO
+         231.175 Hz: H1=-18.960000±16.766252, L1=-9.466667±18.244269, Δ=9.493333 ✗ NO
+         231.180 Hz: H1=-18.960000±16.766252, L1=-9.466667±18.244269, Δ=9.493333 ✗ NO
+         231.221 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.221 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.222 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.248 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.248 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.248 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.253 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.253 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.305 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.305 Hz: H1=-3.653333±7.928944, L1=-9.466667±18.244269, Δ=5.813333 ✗ NO
+         231.310 Hz: H1=-3.653333±7.928944, L1=-9.466667±7.374687, Δ=5.813333 ✗ NO
+
+--- Procesando GPS 1389420544 ---
+   Datos válidos: 67108864 muestras (4096.00 s)
+   Filtro pasa-alta aplicado (>30 Hz)
+
+   --- Banda 180-195 Hz (target 187.37 Hz) ---
+      Líneas H1: 128
+      Líneas L1: 117
+      Líneas comunes H1/L1: 394
+
+   --- Banda 220-240 Hz (target 232.04 Hz) ---
+      Líneas H1: 148
+      Líneas L1: 388
+      Líneas comunes H1/L1: 736
+         231.101 Hz: H1=11.546667±5.219246, L1=-5.493333±11.885718, Δ=17.040000 ✗ NO
+         231.527 Hz: H1=9.866667±0.646632, L1=10.906667±6.173799, Δ=1.040000 ✗ NO
+         231.537 Hz: H1=9.866667±0.646632, L1=10.906667±6.173799, Δ=1.040000 ✗ NO
+         231.537 Hz: H1=9.866667±0.646632, L1=10.906667±6.173799, Δ=1.040000 ✗ NO
+         231.581 Hz: H1=9.866667±18.352041, L1=-16.160000±9.453148, Δ=26.026667 ✗ NO
+
+--- Procesando GPS 1389424640 ---
+   Datos válidos: 60801024 muestras (3711.00 s)
+   Filtro pasa-alta aplicado (>30 Hz)
+
+   --- Banda 180-195 Hz (target 187.37 Hz) ---
+      Líneas H1: 120
+      Líneas L1: 124
+      Líneas comunes H1/L1: 389
+
+   --- Banda 220-240 Hz (target 232.04 Hz) ---
+      Líneas H1: 153
+      Líneas L1: 411
+      Líneas comunes H1/L1: 538
+         231.089 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.102 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.105 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.106 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.118 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.118 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.155 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.171 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.171 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.179 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.195 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.196 Hz: H1=12.293333±13.779426, L1=4.453333±1.123909, Δ=7.840000 ✗ NO
+         231.350 Hz: H1=12.293333±11.808738, L1=-16.693333±11.085125, Δ=28.986667 ✗ NO
+         231.350 Hz: H1=12.293333±11.808738, L1=-16.693333±11.085125, Δ=28.986667 ✗ NO
+         231.526 Hz: H1=4.053333±27.928357, L1=-6.160000±2.879053, Δ=10.213333 ✗ NO
+         231.526 Hz: H1=4.053333±27.928357, L1=-6.160000±2.879053, Δ=10.213333 ✗ NO
+         231.543 Hz: H1=4.053333±27.928357, L1=-6.160000±2.879053, Δ=10.213333 ✗ NO
+         231.597 Hz: H1=-6.613333±21.769954, L1=-6.160000±2.879053, Δ=0.453333 ✗ NO
+         231.629 Hz: H1=-6.613333±21.769954, L1=15.520000±9.637900, Δ=22.133333 ✗ NO
+         231.673 Hz: H1=18.106667±7.497855, L1=15.520000±9.637900, Δ=2.586667 ✗ NO
+         231.673 Hz: H1=18.106667±7.497855, L1=15.520000±9.637900, Δ=2.586667 ✗ NO
+
+======================================================================
+ RESUMEN GLOBAL DE RESULTADOS
+======================================================================
+Resultados guardados en: analisis_diferencial_uat/resultados_diferenciales.csv
+
+🎯 Líneas cerca de 187.37 Hz (Δf < 2 Hz): 0
+
+🎯 Líneas cerca de 232.04 Hz (Δf < 2 Hz): 434
+             gps        freq  slope_h1  slope_l1       diff  match
+462   1389416448  230.298333     -2.40 -6.800000   4.400000  False
+463   1389416448  230.397500     -2.40  9.173333  11.573333  False
+464   1389416448  230.485000     -2.40  9.173333  11.573333  False
+465   1389416448  230.485278     -2.40  9.173333  11.573333  False
+466   1389416448  230.518889     -2.40  9.173333  11.573333  False
+...          ...         ...       ...       ...        ...    ...
+2632  1389424640  233.586944     -0.88  0.560000   1.440000  False
+2633  1389424640  233.590833     -0.88  0.560000   1.440000  False
+2634  1389424640  233.594444     -0.88  0.560000   1.440000  False
+2635  1389424640  233.594722     -0.88  0.560000   1.440000  False
+2636  1389424640  233.595000     -0.88  0.560000   1.440000  False
+
+[434 rows x 6 columns]
+
+✅ Líneas con deriva compatible H1/L1 (Δ < 0.01 Hz/día): 0
+
+🌌 Candidatos compatibles con deriva UAT (0.046±0.01 Hz/día): 0
+
+======================================================================
+✅ ANÁLISIS COMPLETADO
+======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# DETECTOR DE GLITCHES EN BANDA UAT (50-300 Hz) PARA ARCHIVOS LOCALES
+# Versión definitiva con filtro pasa-alta y extracción en banda de interés
+
+============================================================
+🔍 DETECTOR DE GLITCHES EN BANDA UAT (50-300 Hz) - VERSIÓN FILTRADA
+============================================================
+
+--- Procesando archivo GPS 1389416448 ---
+   Filtro pasa-alta aplicado (corte 30 Hz)
+   Picos de SNR detectados: 0
+
+--- Procesando archivo GPS 1389420544 ---
+   Filtro pasa-alta aplicado (corte 30 Hz)
+   Picos de SNR detectados: 0
+
+--- Procesando archivo GPS 1389424640 ---
+   Filtro pasa-alta aplicado (corte 30 Hz)
+   Picos de SNR detectados: 0
+
+============================================================
+📊 RESUMEN DE GLITCHES DETECTADOS
+============================================================
+No se detectaron glitches en la banda UAT.
+
+============================================================
+✅ ANÁLISIS COMPLETADO
+============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANÁLISIS DE CUANTIZACIÓN DE FASE EN LÍNEAS COMUNES H1/L1
+Busca si las fases de las líneas detectadas se agrupan en múltiplos de 45°,
+lo que sería una firma de la rotación de 8 caras (Percudani manifold).
+
+
+ Total de líneas comunes cargadas: 3084
+
+============================================================
+RESULTADOS DEL ANÁLISIS DE CUANTIZACIÓN DE FASE
+============================================================
+Total de líneas analizadas: 3084
+Distancia media al múltiplo de 45° más cercano: 12.02°
+Desviación estándar de las distancias: 8.72°
+
+Prueba Chi-cuadrado (uniformidad vs. bins de 22.5°):
+  Chi2 = 1497.75, p-valor = 0.0000
+  ➤ La distribución NO es uniforme (p<0.05). Posible estructura.
+
+Archivos guardados en: analisis_fase_cuantizada
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CONFIGURACIÓN
+
+ Total de líneas cargadas: 3084
+
+============================================================
+ANÁLISIS DE LA DIFERENCIA DE DERIVA (diff) SEGÚN CERCANÍA A 45°
+============================================================
+Líneas cerca de 45° (dist < 10°): 1670
+Líneas lejos de 45° (dist > 20°): 740
+diff promedio (cerca): 7.4297 Hz/día
+diff promedio (lejos): 11.0401 Hz/día
+Mann-Whitney U test (cerca < lejos): p = 0.0000
+✅ Las líneas cerca de 45° tienen una diferencia de deriva significativamente menor.
+
+Archivo guardado: analisis_fase_cuantizada/lineas_con_fase.csv
+
+
+
+
+
+
+
+
+
+
+
+
+NÚCLEO MATEMÁTICO: MÉTRICA PERCUDANI-FIBONACCI
+
+ Cargando datos desde: analisis_diferencial_uat/resultados_diferenciales.csv...
+
+=================================================================
+INFORME DE VALIDACIÓN: ESPIRAL DE FIBONACCI (UPC)
+=================================================================
+Total líneas analizadas: 3084
+Líneas alineadas con la Espiral: 2433
+Distancia media a la Espiral: 7.07°
+Diferencia de deriva (diff) en la Espiral: 7.8647 Hz/día
+Diferencia de deriva (diff) fuera de Espiral: 10.0955 Hz/día
+Factor de Acoplamiento (Residual/3.697): 1.911
+
+Resultados guardados en: analisis_fibonacci_percudani
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Script para recalcular la distancia a la espiral de Fibonacci y generar
+las figuras de alta calidad para el manuscrito.
+Ejecutar en el mismo entorno donde están los archivos de LIGO.
+
+Cargando datos desde: analisis_diferencial_uat/resultados_diferenciales.csv
+Total de líneas cargadas: 3084
+Calculando fase y distancia a la espiral de Fibonacci...
+Datos guardados en: analisis_fase_cuantizada/lineas_con_fase.csv
+
+Generando figuras...
+
+✅ Todas las figuras se han generado correctamente.
+Figuras guardadas en: figuras_manuscrito
+Datos actualizados en: analisis_fase_cuantizada/lineas_con_fase.csv
+
+
